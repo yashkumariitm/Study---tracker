@@ -15,6 +15,7 @@
     color: #f3f4f6;
     font-family: var(--font-inter);
     overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* Custom sleek dark scrollbars */
@@ -32,6 +33,14 @@
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 240, 255, 0.4);
   }
+}
+
+/* Safe area inset helpers for modern mobile viewports */
+.pb-safe {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+}
+.pt-safe {
+  padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
 }
 
 /* Glassmorphism Surface Utility */

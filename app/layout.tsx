@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Sidebar, MobileTabBar } from "@/components/Navigation";
+import { Sidebar, MobileHeader, MobileMenuDrawer, MobileTabBar } from "@/components/Navigation";
 import { AddPlaylistModal } from "@/components/AddPlaylistModal";
 import { YouTubePlayerModal } from "@/components/YouTubePlayerModal";
 import { PomodoroWidget } from "@/components/PomodoroWidget";
@@ -57,18 +57,22 @@ export default function RootLayout({
     >
       <body className="bg-[#07070c] text-gray-100 min-h-screen selection:bg-[#00f0ff]/30 selection:text-[#00f0ff] antialiased">
         <CloudSyncProvider>
+          {/* Mobile Top Header */}
+          <MobileHeader />
+
           <div className="flex min-h-screen">
             {/* Desktop Left Sidebar */}
             <Sidebar />
 
             {/* Main Content Area */}
-            <main className="flex-1 md:ml-64 pb-20 md:pb-8 min-h-screen">
+            <main className="flex-1 md:ml-64 pt-14 md:pt-0 pb-24 md:pb-8 min-h-screen">
               {children}
             </main>
           </div>
 
-          {/* Mobile Navigation Tab Bar */}
+          {/* Mobile Navigation Tab Bar & Slide-over Drawer */}
           <MobileTabBar />
+          <MobileMenuDrawer />
 
           {/* Global Overlays & Modals */}
           <AddPlaylistModal />

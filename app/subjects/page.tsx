@@ -390,7 +390,7 @@ function SubjectsContent() {
 
             {/* Bulk Selection Actions Bar */}
             {selectedLectureIds.size > 0 && (
-              <div className="p-3 rounded-xl bg-[#00f0ff]/10 border border-[#00f0ff]/30 flex flex-wrap items-center justify-between gap-3 text-xs animate-in fade-in duration-150">
+              <div className="p-3 rounded-xl bg-[#00f0ff]/10 border border-[#00f0ff]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs animate-in fade-in duration-150">
                 <span className="font-semibold text-white font-mono">
                   {selectedLectureIds.size} lecture(s) selected
                 </span>
@@ -460,18 +460,18 @@ function SubjectsContent() {
                 return (
                   <div
                     key={lec.id}
-                    className={`p-3.5 sm:p-4 rounded-2xl glass-panel border transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 ${
+                    className={`p-3 sm:p-4 rounded-2xl glass-panel border transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 ${
                       lec.completed
                         ? "bg-white/[0.015] border-white/5 opacity-80"
                         : "bg-white/[0.03] border-white/10 hover:border-white/25"
                     } ${isSelected ? "border-[#00f0ff]/50 bg-[#00f0ff]/[0.03]" : ""}`}
                   >
                     {/* Left: Checkbox + Thumbnail + Info */}
-                    <div className="flex items-start sm:items-center gap-3.5 min-w-0 flex-1">
+                    <div className="flex items-start sm:items-center gap-2.5 sm:gap-3.5 min-w-0 flex-1 w-full sm:w-auto">
                       {/* Checkbox for bulk */}
                       <button
                         onClick={() => handleToggleSelectLecture(lec.id)}
-                        className="mt-1 sm:mt-0 text-gray-500 hover:text-white cursor-pointer"
+                        className="mt-1 sm:mt-0 text-gray-500 hover:text-white cursor-pointer shrink-0"
                       >
                         {isSelected ? (
                           <CheckSquare className="w-4 h-4 text-[#00f0ff]" />
@@ -483,7 +483,7 @@ function SubjectsContent() {
                       {/* Video Thumbnail */}
                       <div
                         onClick={() => setActiveVideoLecture(lec)}
-                        className="relative w-24 sm:w-28 h-16 rounded-xl overflow-hidden bg-black shrink-0 border border-white/10 group cursor-pointer"
+                        className="relative w-20 sm:w-28 h-14 sm:h-16 rounded-xl overflow-hidden bg-black shrink-0 border border-white/10 group cursor-pointer"
                       >
                         <img
                           src={lec.thumbnail}

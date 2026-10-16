@@ -292,14 +292,25 @@ export default function CalendarPage() {
       </div>
 
       {/* Days of Week Header */}
-      <div className="grid grid-cols-7 gap-2 text-center text-xs font-mono font-semibold text-gray-400 py-1">
-        {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
-          <div key={day}>{day}</div>
+      <div className="grid grid-cols-7 gap-1 sm:gap-2 text-center text-[11px] sm:text-xs font-mono font-semibold text-gray-400 py-1">
+        {[
+          { full: "Mon", short: "M" },
+          { full: "Tue", short: "T" },
+          { full: "Wed", short: "W" },
+          { full: "Thu", short: "T" },
+          { full: "Fri", short: "F" },
+          { full: "Sat", short: "S" },
+          { full: "Sun", short: "S" },
+        ].map((day, idx) => (
+          <div key={idx}>
+            <span className="hidden sm:inline">{day.full}</span>
+            <span className="sm:hidden">{day.short}</span>
+          </div>
         ))}
       </div>
 
       {/* Main Calendar Grid */}
-      <div className="grid grid-cols-7 gap-2">
+      <div className="grid grid-cols-7 gap-1 sm:gap-2">
         {activeDays.map((day) => {
           const dateStr = format(day, "yyyy-MM-dd");
           const isCurrentMonth = isSameMonth(day, currentMonth);
@@ -327,7 +338,7 @@ export default function CalendarPage() {
                   toast.success(`Rescheduled to ${dateStr}`);
                 }
               }}
-              className={`min-h-[105px] sm:min-h-[125px] p-2 rounded-xl border flex flex-col justify-between transition-all cursor-pointer relative ${
+              className={`min-h-[68px] sm:min-h-[125px] p-1.5 sm:p-2 rounded-xl border flex flex-col justify-between transition-all cursor-pointer relative ${
                 isCurrentMonth ? "bg-white/[0.02]" : "bg-white/[0.005] opacity-40"
               } ${
                 isToday
@@ -340,7 +351,7 @@ export default function CalendarPage() {
               {/* Day Cell Header: Number + Badges */}
               <div className="flex items-center justify-between">
                 <span
-                  className={`text-xs font-mono font-bold ${
+                  className={`text-[11px] sm:text-xs font-mono font-bold ${
                     isToday ? "text-[#00f0ff]" : isCurrentMonth ? "text-white" : "text-gray-500"
                   }`}
                 >
@@ -363,8 +374,41 @@ export default function CalendarPage() {
                 </div>
               </div>
 
-              {/* Lecture & Event Badges inside Cell */}
-              <div className="space-y-1 mt-1 overflow-hidden flex-1">
+              {/* Mobile Compact Indicators (< sm) */}
+              <div className="sm:hidden flex flex-col gap-1 mt-1 overflow-hidden">
+                {dayEvents.length > 0 && (
+                  <div className="flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#ffb800] shrink-0" />
+                    <span className="text-[9px] font-mono text-amber-300 truncate">
+                      ★ {dayEvents[0].title}
+                    </span>
+                  </div>
+                )}
+                {dayLectures.length > 0 && (
+                  <div className="flex items-center gap-1 mt-0.5">
+                    <div className="flex gap-0.5 shrink-0">
+                      {dayLectures.slice(0, 3).map((lec) => {
+                        const sub = subjects.find((s) => s.id === lec.subjectId);
+                        return (
+                          <span
+                            key={lec.id}
+                            className={`w-1.5 h-1.5 rounded-full ${
+                              lec.completed ? "opacity-50" : ""
+                            }`}
+                            style={{ backgroundColor: sub?.color || "#00f0ff" }}
+                          />
+                        );
+                      })}
+                    </div>
+                    <span className="text-[9px] font-mono text-gray-400">
+                      {dayLectures.length}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Desktop Full Badges inside Cell (>= sm) */}
+              <div className="hidden sm:block space-y-1 mt-1 overflow-hidden flex-1">
                 {dayEvents.map((evt) => (
                   <div
                     key={evt.id}
@@ -556,12 +600,12 @@ export default function CalendarPage() {
 
       {/* Auto-Plan Generator Modal */}
       {isAutoPlanOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
-          <div className="w-full max-w-xl max-h-[85vh] overflow-y-auto p-6 sm:p-8 rounded-2xl glass-panel bg-[#0d0d18] border border-white/10 space-y-6 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
+          <div className="w-full max-w-xl max-h-[90vh] overflow-y-auto p-4 sm:p-7 rounded-2xl glass-panel bg-[#0d0d18] border border-white/10 space-y-5 shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-white/10">
               <div className="flex items-center gap-2.5">
                 <Wand2 className="w-5 h-5 text-[#00f0ff]" />
-                <h3 className="text-lg font-bold text-white font-heading">
+                <h3 className="text-base sm:text-lg font-bold text-white font-heading">
                   Auto-Plan Pacing Engine
                 </h3>
               </div>
@@ -598,7 +642,7 @@ export default function CalendarPage() {
             </div>
 
             {/* Step 2: Choose Mode */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
               {[
                 { mode: "by_rate" as const, label: "Daily Quota", desc: "Fixed N lectures per day", color: "#00f0ff" },
                 { mode: "by_date" as const, label: "Finish by Date", desc: "Distribute evenly till target", color: "#a855f7" },
@@ -816,8 +860,8 @@ export default function CalendarPage() {
 
       {/* Add Custom Event Modal */}
       {isAddEventOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
-          <div className="w-full max-w-md p-6 rounded-2xl glass-panel bg-[#0d0d18] border border-white/10 space-y-4 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
+          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto p-4 sm:p-6 rounded-2xl glass-panel bg-[#0d0d18] border border-white/10 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between pb-2 border-b border-white/10">
               <h3 className="text-base font-bold text-white font-heading">
                 Add Calendar Event

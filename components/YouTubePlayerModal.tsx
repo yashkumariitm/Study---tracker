@@ -20,6 +20,7 @@ import {
   Copy,
   Check,
   ChevronDown,
+  Video,
 } from "lucide-react";
 import { useStudyStore } from "@/store/useStudyStore";
 import { useYouTubePlayer } from "@/hooks/useYouTubePlayer";
@@ -88,6 +89,7 @@ export function YouTubePlayerModal() {
   const [generationStatus, setGenerationStatus] = useState("");
   const [transcriptError, setTranscriptError] = useState<string | null>(null);
   const [copiedTranscript, setCopiedTranscript] = useState(false);
+  const [mobileTab, setMobileTab] = useState<"video" | "notes" | "transcript">("video");
 
   const activeTranscriptRef = useRef<HTMLButtonElement | null>(null);
 
@@ -331,10 +333,51 @@ export function YouTubePlayerModal() {
           </div>
         </div>
 
+        {/* Mobile Segmented Tab Switcher */}
+        <div className="lg:hidden flex border-b border-white/10 bg-white/[0.02] p-1.5 gap-1.5 shrink-0">
+          <button
+            onClick={() => setMobileTab("video")}
+            className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+              mobileTab === "video"
+                ? "bg-[#00f0ff]/20 text-[#00f0ff] border border-[#00f0ff]/40 shadow-sm"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            <Video className="w-3.5 h-3.5" />
+            <span>Video</span>
+          </button>
+          <button
+            onClick={() => setMobileTab("notes")}
+            className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+              mobileTab === "notes"
+                ? "bg-[#00f0ff]/20 text-[#00f0ff] border border-[#00f0ff]/40 shadow-sm"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            <BookOpen className="w-3.5 h-3.5" />
+            <span>Notes</span>
+          </button>
+          <button
+            onClick={() => setMobileTab("transcript")}
+            className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+              mobileTab === "transcript"
+                ? "bg-[#00f0ff]/20 text-[#00f0ff] border border-[#00f0ff]/40 shadow-sm"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            <Languages className="w-3.5 h-3.5" />
+            <span>Transcript</span>
+          </button>
+        </div>
+
         {/* Content Layout */}
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 overflow-hidden min-h-[500px]">
-          {/* Video Section (Left 2 cols) */}
-          <div className="lg:col-span-2 flex flex-col bg-black/60 p-4 md:p-6 overflow-y-auto">
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 overflow-hidden min-h-[400px]">
+          {/* Video Section (Left 2 cols on desktop, active tab on mobile) */}
+          <div
+            className={`lg:col-span-2 flex flex-col bg-black/60 p-3 sm:p-5 md:p-6 overflow-y-auto ${
+              mobileTab === "video" ? "flex" : "hidden lg:flex"
+            }`}
+          >
             {/* Player Container */}
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl border border-white/10">
               <div id={containerId} className="w-full h-full" />
@@ -427,10 +470,18 @@ export function YouTubePlayerModal() {
             </div>
           </div>
 
-          {/* Transcript & Notes Side Panel (Right 1 col) */}
-          <div className="flex flex-col border-t lg:border-t-0 lg:border-l border-white/10 bg-[#0d0d18] p-5 gap-4 overflow-y-auto">
+          {/* Transcript & Notes Side Panel (Right 1 col on desktop, tabbed on mobile) */}
+          <div
+            className={`flex-col border-t lg:border-t-0 lg:border-l border-white/10 bg-[#0d0d18] p-4 sm:p-5 gap-4 overflow-y-auto ${
+              mobileTab !== "video" ? "flex" : "hidden lg:flex"
+            }`}
+          >
             {/* Transcript Card Section */}
-            <div className="space-y-3">
+            <div
+              className={`space-y-3 ${
+                mobileTab === "transcript" ? "block" : "hidden lg:block"
+              }`}
+            >
               {/* Header */}
               <div className="flex items-center justify-between pb-2 border-b border-white/10">
                 <div className="flex items-center gap-2 text-white font-medium text-xs uppercase tracking-wider font-heading">
@@ -677,31 +728,37 @@ export function YouTubePlayerModal() {
             </div>
 
             {/* Lecture Notes Section */}
-            <div className="flex items-center justify-between pb-2 border-b border-white/10 pt-2">
-              <div className="flex items-center gap-2 text-white font-medium text-xs uppercase tracking-wider font-heading">
-                <BookOpen className="w-4 h-4 text-[#00f0ff]" />
-                <span>Lecture Notes</span>
+            <div
+              className={`flex-col flex-1 gap-2.5 ${
+                mobileTab === "notes" ? "flex" : "hidden lg:flex"
+              }`}
+            >
+              <div className="flex items-center justify-between pb-2 border-b border-white/10 pt-2">
+                <div className="flex items-center gap-2 text-white font-medium text-xs uppercase tracking-wider font-heading">
+                  <BookOpen className="w-4 h-4 text-[#00f0ff]" />
+                  <span>Lecture Notes</span>
+                </div>
+                <div className="flex items-center gap-1 text-[11px] font-mono text-gray-400">
+                  <Save
+                    className={`w-3 h-3 ${isSavedNotes ? "text-[#39ff14]" : "text-amber-400"}`}
+                  />
+                  <span>{isSavedNotes ? "Autosaved" : "Saving..."}</span>
+                </div>
               </div>
-              <div className="flex items-center gap-1 text-[11px] font-mono text-gray-400">
-                <Save
-                  className={`w-3 h-3 ${isSavedNotes ? "text-[#39ff14]" : "text-amber-400"}`}
-                />
-                <span>{isSavedNotes ? "Autosaved" : "Saving..."}</span>
+
+              <textarea
+                value={notesText}
+                onChange={(e) => handleNotesChange(e.target.value)}
+                placeholder="Write your key takeaways, formulas, doubts, or timestamps here (e.g. 14:20 recursion stack visual)..."
+                className="flex-1 w-full min-h-[140px] p-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-500 text-xs leading-relaxed resize-none focus:outline-none focus:border-[#00f0ff] font-mono"
+              />
+
+              <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-gray-400">
+                <span className="flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-[#a855f7]" />
+                  Notes automatically sync with AI Mentor context
+                </span>
               </div>
-            </div>
-
-            <textarea
-              value={notesText}
-              onChange={(e) => handleNotesChange(e.target.value)}
-              placeholder="Write your key takeaways, formulas, doubts, or timestamps here (e.g. 14:20 recursion stack visual)..."
-              className="flex-1 w-full min-h-[120px] p-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-500 text-xs leading-relaxed resize-none focus:outline-none focus:border-[#00f0ff] font-mono"
-            />
-
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-gray-400">
-              <span className="flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-[#a855f7]" />
-                Notes automatically sync with AI Mentor context
-              </span>
             </div>
           </div>
         </div>

@@ -517,7 +517,7 @@ export default function SettingsPage() {
             </a>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
               <input
                 type={showGeminiKey ? "text" : "password"}
@@ -538,7 +538,7 @@ export default function SettingsPage() {
             <button
               onClick={handleTestGeminiKey}
               disabled={testingGemini}
-              className="px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/15 text-xs text-white font-medium hover:bg-white/[0.1] transition-colors cursor-pointer flex items-center gap-1.5 shrink-0"
+              className="px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/15 text-xs text-white font-medium hover:bg-white/[0.1] transition-colors cursor-pointer flex items-center justify-center gap-1.5 shrink-0"
             >
               {testingGemini ? (
                 <>
@@ -612,7 +612,7 @@ export default function SettingsPage() {
             </a>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
               <input
                 type={showGroqKey ? "text" : "password"}
@@ -633,7 +633,7 @@ export default function SettingsPage() {
             <button
               onClick={handleTestGroqKey}
               disabled={testingGroq}
-              className="px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/15 text-xs text-white font-medium hover:bg-white/[0.1] transition-colors cursor-pointer flex items-center gap-1.5 shrink-0"
+              className="px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/15 text-xs text-white font-medium hover:bg-white/[0.1] transition-colors cursor-pointer flex items-center justify-center gap-1.5 shrink-0"
             >
               {testingGroq ? (
                 <>
@@ -757,7 +757,7 @@ export default function SettingsPage() {
             </a>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
               <input
                 type={showYoutubeKey ? "text" : "password"}
@@ -778,7 +778,7 @@ export default function SettingsPage() {
             <button
               onClick={handleTestYoutubeKey}
               disabled={testingYoutube}
-              className="px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/15 text-xs text-white font-medium hover:bg-white/[0.1] transition-colors cursor-pointer flex items-center gap-1.5 shrink-0"
+              className="px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/15 text-xs text-white font-medium hover:bg-white/[0.1] transition-colors cursor-pointer flex items-center justify-center gap-1.5 shrink-0"
             >
               {testingYoutube ? (
                 <>

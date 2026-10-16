@@ -367,23 +367,23 @@ export function AddPlaylistModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl glass-panel bg-[#0d0d16]/95 border border-white/10 shadow-2xl p-6 sm:p-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl glass-panel bg-[#0d0d16]/95 border border-white/10 shadow-2xl p-4 sm:p-7">
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute top-5 right-5 p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+          className="absolute top-4 right-4 p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Header */}
-        <div className="flex items-center gap-3 mb-5">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#00f0ff]/20 to-[#a855f7]/20 border border-[#00f0ff]/40 flex items-center justify-center text-[#00f0ff]">
+        <div className="flex items-center gap-3 mb-5 pr-8">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#00f0ff]/20 to-[#a855f7]/20 border border-[#00f0ff]/40 flex items-center justify-center text-[#00f0ff] shrink-0">
             <Youtube className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-white font-heading">
+            <h2 className="text-lg sm:text-xl font-bold text-white font-heading">
               Add YouTube Study Material
             </h2>
             <p className="text-xs text-gray-400">
@@ -397,27 +397,31 @@ export function AddPlaylistModal() {
           <button
             type="button"
             onClick={() => setActiveTab("playlist")}
-            className={`flex-1 py-2 px-3 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            className={`flex-1 py-2 px-2.5 sm:px-3 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer ${
               activeTab === "playlist"
                 ? "bg-gradient-to-r from-[#00f0ff]/20 to-[#a855f7]/20 border border-[#00f0ff]/40 text-white font-semibold shadow-[0_0_12px_rgba(0,240,255,0.2)]"
                 : "text-gray-400 hover:text-white"
             }`}
           >
-            <Layers className="w-3.5 h-3.5 text-[#00f0ff]" />
-            <span>Import Full Playlist</span>
+            <Layers className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+            <span className="truncate">
+              <span className="hidden sm:inline">Import Full </span>Playlist
+            </span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab("single_video")}
-            className={`flex-1 py-2 px-3 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            className={`flex-1 py-2 px-2.5 sm:px-3 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer ${
               activeTab === "single_video"
                 ? "bg-gradient-to-r from-[#00f0ff]/20 to-[#a855f7]/20 border border-[#00f0ff]/40 text-white font-semibold shadow-[0_0_12px_rgba(0,240,255,0.2)]"
                 : "text-gray-400 hover:text-white"
             }`}
           >
-            <PlaySquare className="w-3.5 h-3.5 text-[#a855f7]" />
-            <span>Add Single Video / Custom Playlist</span>
+            <PlaySquare className="w-3.5 h-3.5 text-[#a855f7] shrink-0" />
+            <span className="truncate">
+              <span className="hidden sm:inline">Add </span>Single Video<span className="hidden sm:inline"> / Custom</span>
+            </span>
           </button>
         </div>
 
@@ -439,12 +443,12 @@ export function AddPlaylistModal() {
                       handleFetchPreview();
                     }
                   }}
-                  className="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#00f0ff] focus:ring-1 focus:ring-[#00f0ff] transition-all"
+                  className="flex-1 min-w-0 px-3.5 sm:px-4 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 text-xs sm:text-sm focus:outline-none focus:border-[#00f0ff] focus:ring-1 focus:ring-[#00f0ff] transition-all"
                 />
                 <button
                   onClick={handleFetchPreview}
                   disabled={loading || !urlInput.trim()}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00f0ff] to-[#a855f7] text-black font-semibold text-sm hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(0,240,255,0.3)] shrink-0"
+                  className="px-3.5 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00f0ff] to-[#a855f7] text-black font-semibold text-xs sm:text-sm hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer shadow-[0_0_15px_rgba(0,240,255,0.3)] shrink-0"
                 >
                   {loading ? (
                     <>
@@ -658,13 +662,13 @@ export function AddPlaylistModal() {
                       handleFetchSingleVideo();
                     }
                   }}
-                  className="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#a855f7] focus:ring-1 focus:ring-[#a855f7] transition-all"
+                  className="flex-1 min-w-0 px-3.5 sm:px-4 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 text-xs sm:text-sm focus:outline-none focus:border-[#a855f7] focus:ring-1 focus:ring-[#a855f7] transition-all"
                 />
                 <button
                   type="button"
                   onClick={handleFetchSingleVideo}
                   disabled={videoLoading || !videoUrlInput.trim()}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#a855f7] to-[#00f0ff] text-black font-semibold text-sm hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(168,85,247,0.3)] shrink-0"
+                  className="px-3.5 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#a855f7] to-[#00f0ff] text-black font-semibold text-xs sm:text-sm hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer shadow-[0_0_15px_rgba(168,85,247,0.3)] shrink-0"
                 >
                   {videoLoading ? (
                     <>
@@ -674,7 +678,10 @@ export function AddPlaylistModal() {
                   ) : (
                     <>
                       <Sparkles className="w-4 h-4 text-black" />
-                      <span>Inspect Video</span>
+                      <span>
+                        <span className="hidden sm:inline">Inspect Video</span>
+                        <span className="sm:hidden">Inspect</span>
+                      </span>
                     </>
                   )}
                 </button>
@@ -691,15 +698,15 @@ export function AddPlaylistModal() {
             {videoPreview && (
               <div className="space-y-5 pt-3 border-t border-white/10 animate-in fade-in duration-300">
                 {/* Video Preview Card */}
-                <div className="flex gap-4 items-start p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.08]">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.08]">
                   {videoPreview.thumbnail && (
                     <img
                       src={videoPreview.thumbnail}
                       alt={videoPreview.title}
-                      className="w-32 h-20 object-cover rounded-lg border border-white/10 shrink-0"
+                      className="w-full sm:w-32 h-28 sm:h-20 object-cover rounded-lg border border-white/10 shrink-0"
                     />
                   )}
-                  <div className="flex-1 min-w-0 space-y-1.5">
+                  <div className="flex-1 min-w-0 space-y-1.5 w-full">
                     <div>
                       <label className="text-[10px] text-gray-400 block">Lecture Title:</label>
                       <input
@@ -727,7 +734,7 @@ export function AddPlaylistModal() {
                     Add to Playlist Destination:
                   </label>
 
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <button
                       type="button"
                       disabled={playlists.length === 0}

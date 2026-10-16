@@ -78,8 +78,8 @@ export function PomodoroWidget() {
   if (!isPomodoroOpen) return null;
 
   return (
-    <div className="fixed bottom-20 md:bottom-6 right-6 z-50 animate-in slide-in-from-bottom-5 duration-300">
-      <div className="w-80 rounded-2xl glass-panel bg-[#0d0d18]/95 border border-[#ff2e97]/30 shadow-[0_0_30px_rgba(255,46,151,0.25)] p-5 backdrop-blur-xl">
+    <div className="fixed bottom-20 md:bottom-6 left-3 right-3 sm:left-auto sm:right-6 sm:w-80 z-50 flex justify-center sm:block animate-in slide-in-from-bottom-5 duration-300">
+      <div className="w-full max-w-sm sm:w-80 rounded-2xl glass-panel bg-[#0d0d18]/95 border border-[#ff2e97]/30 shadow-[0_0_30px_rgba(255,46,151,0.25)] p-4 sm:p-5 backdrop-blur-xl">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-white/10">
           <div className="flex items-center gap-2">

@@ -133,64 +133,64 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Top 4 Performance Badges */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {/* Current & Longest Streak */}
-        <div className="p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10">
+        <div className="p-3.5 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10">
           <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
-            <span>Streak Durability</span>
-            <Flame className="w-4 h-4 text-[#ff2e97]" />
+            <span className="truncate pr-1">Streak Durability</span>
+            <Flame className="w-4 h-4 text-[#ff2e97] shrink-0" />
           </div>
-          <div className="font-mono text-2xl sm:text-3xl font-black text-white flex items-baseline gap-2">
+          <div className="font-mono text-xl sm:text-2xl lg:text-3xl font-black text-white flex items-baseline gap-1.5">
             <span>{currentStreak}</span>
-            <span className="text-xs text-gray-400 font-normal">
+            <span className="text-[11px] sm:text-xs text-gray-400 font-normal">
               (Best: {longestStreak}d)
             </span>
           </div>
-          <div className="text-[11px] text-gray-400 mt-2 font-mono">
+          <div className="text-[11px] text-gray-400 mt-2 font-mono truncate">
             Daily commitment index
           </div>
         </div>
 
         {/* Completed This Month */}
-        <div className="p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10">
+        <div className="p-3.5 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10">
           <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
-            <span>Monthly Output</span>
-            <Calendar className="w-4 h-4 text-[#a855f7]" />
+            <span className="truncate pr-1">Monthly Output</span>
+            <Calendar className="w-4 h-4 text-[#a855f7] shrink-0" />
           </div>
-          <div className="font-mono text-2xl sm:text-3xl font-black text-white flex items-baseline gap-1.5">
+          <div className="font-mono text-xl sm:text-2xl lg:text-3xl font-black text-white flex items-baseline gap-1.5">
             <span>{stats.completedThisMonth}</span>
             <span className="text-xs text-gray-400 font-normal">lectures</span>
           </div>
-          <div className="text-[11px] text-gray-400 mt-2 font-mono">
-            {stats.completedThisWeek} completed this week
+          <div className="text-[11px] text-gray-400 mt-2 font-mono truncate">
+            {stats.completedThisWeek} done this week
           </div>
         </div>
 
         {/* Total Time Invested */}
-        <div className="p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10">
+        <div className="p-3.5 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10">
           <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
-            <span>Total Study Hours</span>
-            <Clock className="w-4 h-4 text-[#00f0ff]" />
+            <span className="truncate pr-1">Total Hours</span>
+            <Clock className="w-4 h-4 text-[#00f0ff] shrink-0" />
           </div>
-          <div className="font-mono text-2xl sm:text-3xl font-black text-white flex items-baseline gap-1.5">
+          <div className="font-mono text-xl sm:text-2xl lg:text-3xl font-black text-white flex items-baseline gap-1.5">
             <span>{stats.totalHours}</span>
             <span className="text-xs text-gray-400 font-normal">hrs</span>
           </div>
-          <div className="text-[11px] text-gray-400 mt-2 font-mono">
-            Lectures + Deep Work Pomodoros
+          <div className="text-[11px] text-gray-400 mt-2 font-mono truncate">
+            Lectures + Deep Work
           </div>
         </div>
 
         {/* Overall Completion */}
-        <div className="p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10">
+        <div className="p-3.5 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10">
           <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
-            <span>Syllabus Completion</span>
-            <Award className="w-4 h-4 text-[#39ff14]" />
+            <span className="truncate pr-1">Syllabus</span>
+            <Award className="w-4 h-4 text-[#39ff14] shrink-0" />
           </div>
-          <div className="font-mono text-2xl sm:text-3xl font-black text-white flex items-baseline gap-1.5">
+          <div className="font-mono text-xl sm:text-2xl lg:text-3xl font-black text-white flex items-baseline gap-1.5">
             <span>{completionPercentage}%</span>
           </div>
-          <div className="text-[11px] text-gray-400 mt-2 font-mono">
+          <div className="text-[11px] text-gray-400 mt-2 font-mono truncate">
             Across {subjects.length} active subject(s)
           </div>
         </div>

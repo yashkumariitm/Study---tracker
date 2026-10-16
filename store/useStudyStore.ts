@@ -32,6 +32,7 @@ interface StudyStoreState {
   isPomodoroOpen: boolean;
   commandPaletteOpen: boolean;
   isFeedbackOpen: boolean;
+  isMobileMenuOpen: boolean;
   addContentInitialMode: 'playlist' | 'single_video';
   addContentTargetSubjectId?: string;
   addContentTargetPlaylistId?: string;
@@ -42,6 +43,7 @@ interface StudyStoreState {
   setIsPomodoroOpen: (open: boolean) => void;
   setCommandPaletteOpen: (open: boolean) => void;
   setIsFeedbackOpen: (open: boolean) => void;
+  setIsMobileMenuOpen: (open: boolean) => void;
   setAddContentModalConfig: (config: {
     open: boolean;
     mode?: 'playlist' | 'single_video';
@@ -152,6 +154,7 @@ export const useStudyStore = create<StudyStoreState>()(
       isPomodoroOpen: false,
       commandPaletteOpen: false,
       isFeedbackOpen: false,
+      isMobileMenuOpen: false,
       addContentInitialMode: "playlist",
       addContentTargetSubjectId: undefined,
       addContentTargetPlaylistId: undefined,
@@ -165,6 +168,7 @@ export const useStudyStore = create<StudyStoreState>()(
       setIsPomodoroOpen: (open) => set({ isPomodoroOpen: open }),
       setCommandPaletteOpen: (open) => set({ commandPaletteOpen: open }),
       setIsFeedbackOpen: (open) => set({ isFeedbackOpen: open }),
+      setIsMobileMenuOpen: (open) => set({ isMobileMenuOpen: open }),
       setAddContentModalConfig: (config) =>
         set({
           isAddPlaylistOpen: config.open,

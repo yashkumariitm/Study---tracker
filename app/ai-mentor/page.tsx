@@ -644,7 +644,7 @@ ${JSON.stringify(progressSummary, null, 2)}`;
 
   return (
     <div
-      className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto flex flex-col h-[calc(100vh-5rem)] md:h-[calc(100vh-2rem)] relative"
+      className="p-3 sm:p-6 lg:p-8 max-w-7xl mx-auto flex flex-col h-[calc(100dvh-7.5rem)] md:h-[calc(100vh-2rem)] relative"
       onDragOver={(e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -1015,7 +1015,7 @@ ${JSON.stringify(progressSummary, null, 2)}`;
             e.preventDefault();
             handleSendMessage();
           }}
-          className="flex gap-2"
+          className="flex gap-1.5 sm:gap-2"
         >
           <input
             type="text"
@@ -1028,7 +1028,7 @@ ${JSON.stringify(progressSummary, null, 2)}`;
             onChange={(e) => setInputMessage(e.target.value)}
             onPaste={handlePaste}
             disabled={isStreaming}
-            className="flex-1 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 text-xs sm:text-sm focus:outline-none focus:border-[#00f0ff] transition-all"
+            className="flex-1 min-w-0 px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 text-xs sm:text-sm focus:outline-none focus:border-[#00f0ff] transition-all"
           />
 
           {/* Hidden File Input */}
@@ -1046,7 +1046,7 @@ ${JSON.stringify(progressSummary, null, 2)}`;
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={isStreaming || pendingAttachments.length >= 3}
-            className="px-3.5 py-3 rounded-xl bg-white/[0.06] border border-white/15 text-gray-300 hover:text-white hover:bg-white/[0.1] hover:border-[#00f0ff]/40 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center justify-center cursor-pointer shrink-0"
+            className="px-3 sm:px-3.5 py-2.5 sm:py-3 rounded-xl bg-white/[0.06] border border-white/15 text-gray-300 hover:text-white hover:bg-white/[0.1] hover:border-[#00f0ff]/40 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center justify-center cursor-pointer shrink-0"
             title="Attach image or PDF (max 3)"
           >
             <Paperclip className="w-4 h-4 text-[#00f0ff]" />
@@ -1056,7 +1056,7 @@ ${JSON.stringify(progressSummary, null, 2)}`;
             <button
               type="button"
               onClick={handleStopStream}
-              className="px-4 py-3 rounded-xl bg-red-500/20 text-red-400 border border-red-500/40 hover:bg-red-500/30 font-semibold text-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+              className="px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-red-500/20 text-red-400 border border-red-500/40 hover:bg-red-500/30 font-semibold text-xs transition-colors flex items-center gap-1.5 cursor-pointer shrink-0"
             >
               <Square className="w-4 h-4 fill-current" />
               <span>Stop</span>
@@ -1065,7 +1065,7 @@ ${JSON.stringify(progressSummary, null, 2)}`;
             <button
               type="submit"
               disabled={(!inputMessage.trim() && pendingAttachments.length === 0) || isStreaming}
-              className="px-5 py-3 rounded-xl bg-gradient-to-r from-[#00f0ff] to-[#a855f7] text-black font-semibold text-xs sm:text-sm hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all flex items-center gap-2 cursor-pointer"
+              className="px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-[#00f0ff] to-[#a855f7] text-black font-semibold text-xs sm:text-sm hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0"
             >
               <Send className="w-4 h-4 text-black" />
               <span className="hidden sm:inline">Ask</span>

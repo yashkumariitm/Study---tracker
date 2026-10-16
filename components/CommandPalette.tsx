@@ -103,8 +103,14 @@ export function CommandPalette() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-150">
-      <div className="relative w-full max-w-xl rounded-2xl glass-panel bg-[#0b0b14]/95 border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden">
+    <div
+      onClick={() => setIsOpen(false)}
+      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-20 px-3 sm:px-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-150"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-xl rounded-2xl glass-panel bg-[#0b0b14]/95 border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden"
+      >
         {/* Search input field */}
         <div className="flex items-center gap-3 px-4 py-3.5 border-b border-white/10">
           <Search className="w-5 h-5 text-[#00f0ff] shrink-0" />

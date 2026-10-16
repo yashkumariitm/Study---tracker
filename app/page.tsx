@@ -224,16 +224,16 @@ Current status JSON: ${JSON.stringify(summaryPayload)}`;
       ) : (
         <>
           {/* Key Metric Stats Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {/* Daily Goal Card */}
-            <div className="p-4 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10 relative overflow-hidden group hover:border-[#00f0ff]/30 transition-all">
+            <div className="p-3.5 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10 relative overflow-hidden group hover:border-[#00f0ff]/30 transition-all">
               <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
-                <span>Today&apos;s Goal</span>
-                <span className="font-mono text-[#00f0ff]">
+                <span className="truncate pr-1">Today&apos;s Goal</span>
+                <span className="font-mono text-[#00f0ff] shrink-0">
                   {stats.completedToday} / {dailyGoal}
                 </span>
               </div>
-              <div className="font-mono text-2xl sm:text-3xl font-black text-white">
+              <div className="font-mono text-xl sm:text-2xl lg:text-3xl font-black text-white">
                 {dailyGoalPercentage}%
               </div>
               <div className="w-full bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
@@ -245,7 +245,7 @@ Current status JSON: ${JSON.stringify(summaryPayload)}`;
             </div>
 
             {/* Streak Card */}
-            <div className="p-4 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10 relative overflow-hidden group hover:border-[#ff2e97]/30 transition-all">
+            <div className="p-3.5 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10 relative overflow-hidden group hover:border-[#ff2e97]/30 transition-all">
               <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
                 <span>Streak</span>
                 <Flame
@@ -254,41 +254,41 @@ Current status JSON: ${JSON.stringify(summaryPayload)}`;
                   }`}
                 />
               </div>
-              <div className="font-mono text-2xl sm:text-3xl font-black text-white flex items-baseline gap-1.5">
+              <div className="font-mono text-xl sm:text-2xl lg:text-3xl font-black text-white flex items-baseline gap-1.5">
                 <span>{currentStreak}</span>
                 <span className="text-xs font-normal text-gray-400">days</span>
               </div>
-              <div className="text-[11px] text-gray-400 mt-2 font-mono">
+              <div className="text-[11px] text-gray-400 mt-2 font-mono truncate">
                 {studiedToday ? (
                   <span className="text-[#39ff14]">✓ Active today</span>
                 ) : (
-                  <span className="text-amber-400">Complete 1 lecture today!</span>
+                  <span className="text-amber-400">Complete 1 today!</span>
                 )}
               </div>
             </div>
 
             {/* Total Hours Card */}
-            <div className="p-4 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10 relative overflow-hidden group hover:border-[#a855f7]/30 transition-all">
+            <div className="p-3.5 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10 relative overflow-hidden group hover:border-[#a855f7]/30 transition-all">
               <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
-                <span>Total Study Time</span>
-                <Clock className="w-4 h-4 text-[#a855f7]" />
+                <span className="truncate pr-1">Total Time</span>
+                <Clock className="w-4 h-4 text-[#a855f7] shrink-0" />
               </div>
-              <div className="font-mono text-2xl sm:text-3xl font-black text-white flex items-baseline gap-1.5">
+              <div className="font-mono text-xl sm:text-2xl lg:text-3xl font-black text-white flex items-baseline gap-1.5">
                 <span>{stats.totalHours}</span>
                 <span className="text-xs font-normal text-gray-400">hours</span>
               </div>
-              <div className="text-[11px] text-gray-400 mt-2 font-mono">
-                <span>{stats.completedThisWeek} lectures this week</span>
+              <div className="text-[11px] text-gray-400 mt-2 font-mono truncate">
+                <span>{stats.completedThisWeek} lecs this week</span>
               </div>
             </div>
 
             {/* Total Lectures Done Card */}
-            <div className="p-4 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10 relative overflow-hidden group hover:border-[#39ff14]/30 transition-all">
+            <div className="p-3.5 sm:p-5 rounded-2xl glass-panel bg-white/[0.02] border border-white/10 relative overflow-hidden group hover:border-[#39ff14]/30 transition-all">
               <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
-                <span>Lectures Done</span>
-                <CheckCircle2 className="w-4 h-4 text-[#39ff14]" />
+                <span className="truncate pr-1">Lectures Done</span>
+                <CheckCircle2 className="w-4 h-4 text-[#39ff14] shrink-0" />
               </div>
-              <div className="font-mono text-2xl sm:text-3xl font-black text-white flex items-baseline gap-1.5">
+              <div className="font-mono text-xl sm:text-2xl lg:text-3xl font-black text-white flex items-baseline gap-1.5">
                 <span>{lectures.filter((l) => l.completed).length}</span>
                 <span className="text-xs font-normal text-gray-500">
                   / {lectures.length}
